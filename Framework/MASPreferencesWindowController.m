@@ -95,6 +95,11 @@ static NSString * PreferencesKeyForViewBounds (NSString *identifier)
 
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidMove:)   name:NSWindowDidMoveNotification object:self.window];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(windowDidResize:) name:NSWindowDidResizeNotification object:self.window];
+    
+    // macOS 11.0
+    if (@available(macOS 10.16, *)) {
+        self.window.toolbarStyle = NSWindowToolbarStylePreference;
+    }
 }
 
 - (NSViewController <MASPreferencesViewController> *)firstViewController {
